@@ -1,0 +1,663 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <base target="_top">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Webinar dan workshop online Braincompt Digital Media.">
+  <title>Braincompt Digital Media</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --purple:#30205f;
+      --purple2:#5734a6;
+      --orange:#ff8a32;
+      --yellow:#ffd34e;
+      --blue:#4d82df;
+      --ink:#17132c;
+      --muted:#77758a;
+      --paper:#f8f7fc;
+      --line:#ece9f4;
+    }
+
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      margin:0;
+      font-family:"DM Sans",sans-serif;
+      color:var(--ink);
+      background:white;
+    }
+    a { text-decoration:none;color:inherit; }
+    .wrap { width:min(1140px,calc(100% - 40px));margin:auto; }
+
+    header {
+      position:sticky;top:0;z-index:20;
+      background:#ffffffed;
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid var(--line);
+    }
+    .nav {
+      height:76px;display:flex;
+      align-items:center;justify-content:space-between;
+    }
+    .brand { display:flex;align-items:center;gap:11px;font-weight:800; }
+    .logo {
+      width:42px;height:42px;border-radius:13px;
+      background:linear-gradient(135deg,var(--purple),var(--purple2));
+      display:grid;place-items:center;color:white;
+      font-weight:800;font-size:22px;
+    }
+    .brand small {
+      display:block;color:var(--muted);
+      font-size:10px;letter-spacing:1.7px;
+    }
+    .links { display:flex;gap:27px;font-size:13px;font-weight:700;color:#5e5a70; }
+    .btn {
+      display:inline-flex;align-items:center;justify-content:center;
+      border:0;border-radius:12px;padding:13px 19px;
+      background:var(--orange);color:#24143d;
+      font-weight:800;font-size:13px;cursor:pointer;
+    }
+    .btn.dark { background:var(--purple);color:white; }
+    .btn.outline {
+      background:transparent;color:white;
+      border:1px solid #ffffff66;
+    }
+    .menu { display:none;background:none;border:0;font-size:25px; }
+
+    .hero {
+      background:
+        radial-gradient(circle at 85% 15%,#7453c8 0,transparent 28%),
+        linear-gradient(120deg,#211541,#38216d 65%,#263d78);
+      color:white;overflow:hidden;
+    }
+    .hero-grid {
+      display:grid;grid-template-columns:1.1fr .9fr;
+      gap:55px;align-items:center;padding:94px 0 100px;
+    }
+    .eyebrow {
+      display:inline-block;color:#ffe18a;
+      background:#ffffff13;border:1px solid #ffffff24;
+      padding:8px 12px;border-radius:30px;
+      font-size:11px;font-weight:800;letter-spacing:1.2px;
+    }
+    .hero h1 {
+      font:800 clamp(38px,5vw,62px)/1.08 "Plus Jakarta Sans";
+      letter-spacing:-2px;margin:23px 0;
+    }
+    .hero h1 span { color:var(--yellow); }
+    .hero p {
+      max-width:550px;color:#ded8f0;
+      font-size:16px;line-height:1.8;
+    }
+    .hero-actions { display:flex;gap:12px;flex-wrap:wrap;margin-top:29px; }
+    .hero-art {
+      min-height:350px;position:relative;
+      display:grid;place-items:center;
+    }
+    .orb {
+      width:min(340px,80vw);aspect-ratio:1;border-radius:50%;
+      background:linear-gradient(145deg,#ffcf57,#ff8a32 55%,#df5c54);
+      box-shadow:0 25px 80px #0c092c88;
+      display:grid;place-items:center;
+    }
+    .orb-inner {
+      width:77%;height:77%;border:1px solid #fff9;
+      border-radius:50%;display:grid;place-items:center;
+      text-align:center;color:#2c1a4c;background:#ffffff18;
+    }
+    .orb-inner strong {
+      font:800 36px "Plus Jakarta Sans";display:block;
+    }
+    .orb-inner span { font-size:12px;font-weight:800;letter-spacing:2px; }
+    .float {
+      position:absolute;background:white;color:var(--ink);
+      border-radius:16px;padding:14px 17px;
+      box-shadow:0 16px 40px #100a2c44;
+      font-weight:800;font-size:12px;
+    }
+    .float.one { top:20px;left:0; }
+    .float.two { right:0;bottom:28px; }
+    .float b { color:var(--purple2);font-size:20px;display:block; }
+
+    section { padding:82px 0; }
+    .section-head {
+      text-align:center;max-width:680px;margin:0 auto 38px;
+    }
+    .kicker {
+      color:var(--purple2);font-weight:800;
+      font-size:11px;letter-spacing:1.8px;text-transform:uppercase;
+    }
+    .section-head h2 {
+      font:800 clamp(27px,3vw,38px)/1.2 "Plus Jakarta Sans";
+      margin:12px 0;
+    }
+    .section-head p { color:var(--muted);line-height:1.7; }
+
+    .about-grid {
+      display:grid;grid-template-columns:1fr 1fr;
+      gap:50px;align-items:center;
+    }
+    .about-panel {
+      background:var(--paper);border:1px solid var(--line);
+      padding:32px;border-radius:24px;
+    }
+    .about-panel h3 { font:800 23px "Plus Jakarta Sans"; }
+    .about-panel p { color:var(--muted);line-height:1.8; }
+    .checks { display:grid;gap:13px;margin-top:22px; }
+    .checks div { display:flex;gap:11px;font-weight:700;font-size:13px; }
+    .check {
+      width:23px;height:23px;border-radius:8px;
+      background:#fff0d9;color:#c86a16;
+      display:grid;place-items:center;flex:none;
+    }
+    .stat-grid { display:grid;grid-template-columns:1fr 1fr;gap:14px; }
+    .stat { padding:25px;border-radius:20px;background:#f3effb; }
+    .stat:nth-child(2) { background:#fff3e8; }
+    .stat:nth-child(3) { background:#edf3ff; }
+    .stat:nth-child(4) { background:#fff9df; }
+    .stat strong {
+      font:800 25px "Plus Jakarta Sans";
+      display:block;color:var(--purple);
+    }
+    .stat span { font-size:12px;color:var(--muted);font-weight:700; }
+
+    .programs { background:var(--paper); }
+    .cards { display:grid;grid-template-columns:repeat(3,1fr);gap:20px; }
+    .card {
+      background:white;border:1px solid var(--line);
+      border-radius:19px;overflow:hidden;transition:.2s;
+    }
+    .card:hover {
+      transform:translateY(-5px);
+      box-shadow:0 18px 40px #2d1a5b12;
+    }
+    .card-img {
+      height:190px;
+      background:linear-gradient(135deg,#33215f,#5b45a2);
+      display:grid;place-items:center;color:white;
+      font-size:48px;overflow:hidden;
+    }
+    .card-img img { width:100%;height:100%;object-fit:cover; }
+    .card-body { padding:22px; }
+    .tag {
+      display:inline-block;padding:6px 9px;
+      background:#f1ebfc;color:var(--purple2);
+      font-size:10px;font-weight:800;border-radius:20px;
+    }
+    .card h3 {
+      font:800 18px/1.35 "Plus Jakarta Sans";
+      margin:13px 0 9px;
+    }
+    .card p {
+      font-size:13px;line-height:1.65;color:var(--muted);
+      min-height:64px;
+    }
+    .price { font-weight:800;color:var(--purple);margin:15px 0; }
+    .empty {
+      grid-column:1/-1;text-align:center;color:var(--muted);
+      padding:40px;background:white;
+      border:1px dashed #d9d3e8;border-radius:18px;
+    }
+
+    .why-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:18px; }
+    .why { padding:25px;border:1px solid var(--line);border-radius:18px; }
+    .why .ico {
+      width:46px;height:46px;border-radius:14px;
+      background:#f1ebfc;display:grid;place-items:center;font-size:22px;
+    }
+    .why h3 { font:800 16px "Plus Jakarta Sans";margin:17px 0 8px; }
+    .why p { font-size:13px;color:var(--muted);line-height:1.7; }
+
+    .testimonials { background:#211541;color:white; }
+    .testimonials .section-head p { color:#c7c0d9; }
+    .testimonials .kicker { color:var(--yellow); }
+    .test-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:18px; }
+    .quote {
+      background:#ffffff0d;border:1px solid #ffffff1c;
+      padding:24px;border-radius:18px;
+    }
+    .stars { color:var(--yellow);letter-spacing:3px; }
+    .quote p { color:#e3dff0;font-size:13px;line-height:1.8; }
+    .person {
+      display:flex;align-items:center;gap:10px;
+      margin-top:18px;font-weight:800;font-size:13px;
+    }
+    .avatar {
+      width:36px;height:36px;border-radius:50%;
+      background:#5d4a8e;object-fit:cover;
+    }
+
+    .cta { padding:60px 0; }
+    .cta-box {
+      border-radius:25px;
+      background:linear-gradient(115deg,#33215f,#4e388b);
+      padding:44px;display:flex;align-items:center;
+      justify-content:space-between;gap:25px;color:white;
+    }
+    .cta-box h2 { font:800 28px "Plus Jakarta Sans";margin:0 0 10px; }
+    .cta-box p { color:#ddd5ef;line-height:1.6; }
+
+    footer { background:#17112c;color:#c7c0d9;padding:32px 0;font-size:12px; }
+    .foot { display:flex;justify-content:space-between;gap:20px;align-items:center; }
+    .foot strong { color:white; }
+
+    .chat-launch {
+      position:fixed;right:22px;bottom:22px;z-index:40;
+      width:58px;height:58px;border:0;border-radius:50%;
+      background:var(--orange);font-size:25px;
+      box-shadow:0 12px 30px #1b123b55;cursor:pointer;
+    }
+    .chatbox {
+      position:fixed;right:22px;bottom:92px;
+      width:min(360px,calc(100vw - 32px));height:440px;
+      background:white;border:1px solid var(--line);
+      border-radius:20px;box-shadow:0 20px 70px #17112c33;
+      z-index:40;display:none;overflow:hidden;
+    }
+    .chatbox.open { display:flex;flex-direction:column; }
+    .chathead { padding:16px;background:var(--purple);color:white;font-weight:800; }
+    .chathead small { display:block;color:#d8d0eb;font-weight:500;margin-top:3px; }
+    .chatmsgs { padding:14px;flex:1;overflow:auto;background:#faf9fd; }
+    .bubble {
+      max-width:88%;padding:11px 13px;border-radius:14px;
+      margin:7px 0;font-size:12px;line-height:1.6;white-space:pre-wrap;
+    }
+    .bot { background:#eee9f7;color:var(--ink); }
+    .user { background:var(--purple);color:white;margin-left:auto; }
+    .chatform {
+      display:flex;padding:10px;gap:8px;border-top:1px solid var(--line);
+    }
+    .chatform input {
+      min-width:0;flex:1;border:1px solid var(--line);
+      border-radius:10px;padding:11px;
+    }
+    .chatform button {
+      border:0;border-radius:10px;background:var(--orange);
+      font-weight:800;padding:0 14px;
+    }
+
+    @media(max-width:800px) {
+      .links {
+        display:none;position:absolute;top:76px;left:0;right:0;
+        background:white;padding:20px;flex-direction:column;
+        border-bottom:1px solid var(--line);
+      }
+      .links.show { display:flex; }
+      .menu { display:block; }
+      .nav>.btn { display:none; }
+      .hero-grid { grid-template-columns:1fr;padding:70px 0; }
+      .hero-art { min-height:280px; }
+      .about-grid { grid-template-columns:1fr; }
+      .cards,.test-grid { grid-template-columns:1fr 1fr; }
+      .why-grid { grid-template-columns:1fr 1fr; }
+      .cta-box { display:block; }
+      .cta-box .btn { margin-top:22px; }
+    }
+    @media(max-width:540px) {
+      .wrap { width:min(100% - 30px,1140px); }
+      section { padding:62px 0; }
+      .hero h1 { letter-spacing:-1.5px; }
+      .hero-grid { gap:20px; }
+      .hero-art { min-height:250px; }
+      .orb { width:245px; }
+      .float.one { left:0;top:5px; }
+      .float.two { right:0;bottom:8px; }
+      .cards,.test-grid,.why-grid { grid-template-columns:1fr; }
+      .foot { display:block; }
+      .foot div+div { margin-top:12px; }
+      .cta-box { padding:28px; }
+      .stat-grid { gap:9px; }
+      .stat { padding:18px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#home">
+      <span class="logo">B</span>
+      <span>Braincompt<small>DIGITAL MEDIA</small></span>
+    </a>
+
+    <nav class="links" id="navLinks">
+      <a href="#about">Tentang</a>
+      <a href="#programs">Program</a>
+      <a href="#benefits">Keunggulan</a>
+      <a href="#testimonials">Testimoni</a>
+    </nav>
+
+    <a class="btn" href="#programs">Jelajahi Program</a>
+    <button class="menu" onclick="document.getElementById('navLinks').classList.toggle('show')">☰</button>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero" id="home">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">✦ LEARNING FOR THE DIGITAL FUTURE</span>
+
+        <h1>
+          Tingkatkan Kompetensi.
+          <br><span>Ciptakan Inovasi.</span>
+        </h1>
+
+        <p>
+          Ruang belajar digital untuk guru, sekolah, mahasiswa,
+          dan masyarakat yang ingin berkembang melalui webinar
+          dan workshop online yang praktis, relevan, dan inspiratif.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn" href="#programs">Lihat Program</a>
+          <a class="btn outline" href="#about">Kenali Braincompt</a>
+        </div>
+      </div>
+
+      <div class="hero-art">
+        <div class="orb">
+          <div class="orb-inner">
+            <div>
+              <strong>LEARN<br>CREATE</strong>
+              <span>TRANSFORM</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="float one"><b>01</b>Belajar hal baru</div>
+        <div class="float two"><b>∞</b>Terus bertumbuh</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap about-grid">
+
+      <div>
+        <span class="kicker">Tentang Kami</span>
+
+        <h2 style="font:800 34px/1.2 'Plus Jakarta Sans';margin:12px 0 18px">
+          Teknologi bermakna ketika membantu manusia berkembang.
+        </h2>
+
+        <p style="color:var(--muted);line-height:1.85">
+          Braincompt Digital Media menghadirkan pengalaman belajar
+          digital melalui webinar dan workshop online. Kami membantu
+          peserta memahami teknologi, mencoba keterampilan baru,
+          dan menerapkannya dalam pekerjaan maupun kehidupan sehari-hari.
+        </p>
+
+        <div class="checks">
+          <div><span class="check">✓</span>Materi aplikatif dan mudah dipraktikkan</div>
+          <div><span class="check">✓</span>Topik relevan dengan perkembangan teknologi</div>
+          <div><span class="check">✓</span>Belajar bersama narasumber dan komunitas</div>
+        </div>
+      </div>
+
+      <div class="about-panel">
+        <h3>Belajar bukan sekadar tahu.</h3>
+        <p>
+          Belajar adalah proses mencoba, berkarya, dan membawa perubahan.
+          Kami merancang program agar setiap sesi memberi wawasan
+          sekaligus pengalaman praktik.
+        </p>
+
+        <div class="stat-grid">
+          <div class="stat"><strong>LIVE</strong><span>Webinar interaktif</span></div>
+          <div class="stat"><strong>PRAKTIK</strong><span>Workshop langsung</span></div>
+          <div class="stat"><strong>DIGITAL</strong><span>Kompetensi masa kini</span></div>
+          <div class="stat"><strong>GROW</strong><span>Belajar berkelanjutan</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="programs" id="programs">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">Program Kami</span>
+        <h2>Temukan kelas yang tepat untukmu</h2>
+        <p>
+          Pilih webinar atau workshop yang sesuai dengan
+          kebutuhan pengembangan kompetensimu.
+        </p>
+      </div>
+
+      <div class="cards" id="productList">
+        <div class="empty">Memuat program...</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="benefits">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">Mengapa Braincompt?</span>
+        <h2>Pengalaman belajar yang lebih bermakna</h2>
+        <p>Belajar dengan arah yang jelas, materi yang relevan, dan kesempatan untuk langsung mencoba.</p>
+      </div>
+
+      <div class="why-grid">
+        <article class="why">
+          <div class="ico">🎯</div>
+          <h3>Relevan dan terarah</h3>
+          <p>Topik dipilih berdasarkan kebutuhan nyata dan perkembangan dunia digital.</p>
+        </article>
+
+        <article class="why">
+          <div class="ico">🛠️</div>
+          <h3>Praktis dan aplikatif</h3>
+          <p>Workshop mendorong peserta mencoba dan menghasilkan karya atau solusi.</p>
+        </article>
+
+        <article class="why">
+          <div class="ico">🌱</div>
+          <h3>Terus bertumbuh</h3>
+          <p>Bangun kebiasaan belajar dan tingkatkan kompetensi secara berkelanjutan.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials" id="testimonials">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">Cerita Peserta</span>
+        <h2>Belajar, berbagi, bertumbuh bersama</h2>
+        <p>Pengalaman peserta yang mengikuti program Braincompt Digital Media.</p>
+      </div>
+
+      <div class="test-grid" id="testimonialList">
+        <div class="empty">Testimoni akan tampil di sini.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="wrap">
+      <div class="cta-box">
+        <div>
+          <h2>Siap meningkatkan kompetensimu?</h2>
+          <p>Jelajahi program Braincompt dan mulai perjalanan belajar digitalmu.</p>
+        </div>
+        <a class="btn" href="#programs">Temukan Program →</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <strong>Braincompt Digital Media</strong><br>
+      Learn • Create • Transform
+    </div>
+    <div>
+      © <span id="year"></span> Braincompt Digital Media. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<!-- CHATBOT -->
+
+<button class="chat-launch" id="chatLaunch">✦</button>
+
+<div class="chatbox" id="chatbox">
+  <div class="chathead">
+    Braincompt Assistant
+    <small>Tanyakan informasi program kami</small>
+  </div>
+
+  <div class="chatmsgs" id="chatmsgs">
+    <div class="bubble bot">
+      Halo! Ada yang ingin kamu ketahui tentang webinar dan workshop Braincompt?
+    </div>
+  </div>
+
+  <form class="chatform" id="chatform">
+    <input id="chatInput" placeholder="Tulis pertanyaan..." autocomplete="off">
+    <button type="submit">Kirim</button>
+  </form>
+</div>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  const $ = selector => document.querySelector(selector);
+
+  function esc(value) {
+    return String(value ?? "").replace(/[&<>"']/g, c => ({
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#39;"
+    }[c]));
+  }
+
+  // GANTI DENGAN NOMOR WHATSAPP RESMI BRAINCOMPT
+  // Format: 62xxxxxxxxxxx tanpa tanda +
+  const WHATSAPP_NUMBER = "6280000000000";
+
+  function waLink(message) {
+    return "https://wa.me/" + WHATSAPP_NUMBER +
+      "?text=" + encodeURIComponent(message);
+  }
+
+  // AMBIL DATA DARI GOOGLE SHEETS
+  function loadSite() {
+    google.script.run
+      .withSuccessHandler(renderSite)
+      .withFailureHandler(error => {
+        $("#productList").innerHTML =
+          '<div class="empty">' + esc(error.message || error) + '</div>';
+      })
+      .getPublicData();
+  }
+
+  function renderSite(data) {
+    const products = data.products || [];
+    const tests = data.testimonials || [];
+
+    // RENDER PROGRAM
+    $("#productList").innerHTML = products.length
+      ? products.map(p => `
+        <article class="card">
+          <div class="card-img">
+            ${p.gambar
+              ? `<img src="${esc(p.gambar)}" alt="${esc(p.nama)}" loading="lazy">`
+              : "✦"}
+          </div>
+
+          <div class="card-body">
+            <span class="tag">${esc(p.kategori || "Program")}</span>
+            <h3>${esc(p.nama)}</h3>
+            <p>${esc(p.deskripsi)}</p>
+            <div class="price">${esc(p.harga || "Hubungi admin")}</div>
+
+            <a class="btn dark"
+              href="${waLink("Halo Braincompt, saya tertarik dengan program: " + p.nama)}"
+              target="_blank" rel="noopener">
+              Tanya / Daftar
+            </a>
+          </div>
+        </article>
+      `).join("")
+      : '<div class="empty">Program segera hadir. Silakan hubungi kami untuk informasi lebih lanjut.</div>';
+
+    // RENDER TESTIMONI
+    $("#testimonialList").innerHTML = tests.length
+      ? tests.map(t => `
+        <article class="quote">
+          <div class="stars">
+            ${"★".repeat(Math.max(1, Math.min(5, Number(t.rating) || 5)))}
+          </div>
+
+          <p>“${esc(t.pesan)}”</p>
+
+          <div class="person">
+            ${t.avatar
+              ? `<img class="avatar" src="${esc(t.avatar)}" alt="">`
+              : '<span class="avatar">✦</span>'}
+            <span>${esc(t.nama)}</span>
+          </div>
+        </article>
+      `).join("")
+      : '<div class="empty">Testimoni peserta akan segera ditampilkan.</div>';
+  }
+
+  loadSite();
+
+  // CHATBOT
+  $("#chatLaunch").onclick = () => {
+    $("#chatbox").classList.toggle("open");
+  };
+
+  function addBubble(text, who) {
+    const div = document.createElement("div");
+    div.className = "bubble " + who;
+    div.textContent = text;
+
+    $("#chatmsgs").appendChild(div);
+    $("#chatmsgs").scrollTop = $("#chatmsgs").scrollHeight;
+
+    return div;
+  }
+
+  $("#chatform").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const input = $("#chatInput");
+    const message = input.value.trim();
+
+    if (!message) return;
+
+    input.value = "";
+
+    addBubble(message, "user");
+
+    const waiting = addBubble("Sedang menyiapkan jawaban...", "bot");
+
+    google.script.run
+      .withSuccessHandler(answer => {
+        waiting.textContent = answer;
+      })
+      .withFailureHandler(error => {
+        waiting.textContent =
+          error.message || "Maaf, chatbot sedang tidak tersedia.";
+      })
+      .askBraincomptBot(message);
+  });
+</script>
+
+</body>
+</html>
